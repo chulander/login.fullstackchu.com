@@ -1,28 +1,60 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { AuthService, withAuth } from './component';
+import logo from './resource/logo.svg';
 import './App.css';
 
+const Auth = new AuthService();
+
 class App extends Component {
+  handleLogout = () => {
+    Auth.logout();
+    const {
+      history: {
+        replace = function() {
+          void 0;
+        }
+      } = {}
+    } = this.props;
+
+    replace('/login');
+  };
+
+  componentWillMount() {
+    const token = Auth.getToken();
+    fetch('http://localhost:8080', {
+      method: 'get',
+      headers: new Headers({
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(res => {
+        console.log('success getting res', res);
+      })
+      .catch(err => {
+        console.error('error geting ', err);
+      });
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
+          {this.props.user && <h2>Welcome {this.props.user.username}</h2>}
+          <p className="App-intro">
+            <button
+              type="button"
+              className="form-submit"
+              onClick={this.handleLogout}
+            >
+              Logout
+            </button>
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
         </header>
       </div>
     );
   }
 }
 
-export default App;
+export default withAuth(App);
