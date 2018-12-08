@@ -21,7 +21,7 @@ class App extends Component {
 
   componentWillMount() {
     const token = Auth.getToken();
-    fetch('http://localhost:8080', {
+    fetch('https://login.fullstackchu.com', {
       method: 'get',
       headers: new Headers({
         Authorization: `Bearer ${token}`,

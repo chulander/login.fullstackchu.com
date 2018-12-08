@@ -11,6 +11,7 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
+    "deploy": "yarn run build && aws s3 cp dist/ s3://login.fullstackchu.com --recursive",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
