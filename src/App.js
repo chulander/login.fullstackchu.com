@@ -21,26 +21,26 @@ class App extends Component {
 
   componentWillMount() {
     const token = Auth.getToken();
-    // fetch('https://login.fullstackchu.com', {
-    //   method: 'get',
-    //   headers: new Headers({
-    //     Authorization: `Bearer ${token}`,
-    //     'Content-Type': 'application/json'
-    //   })
-    // })
     if (token) {
       console.log('token exists during route "succes" mount');
+      // fetch('https://login.fullstackchu.com', {
+      //   method: 'post',
+      //   body: {
+      //     token
+      //   }
+      // })
       fetch('https://login.fullstackchu.com', {
-        method: 'post',
-        body: {
-          token
-        }
+        method: 'get',
+        headers: new Headers({
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        })
       })
         .then(res => {
-          console.log('success posting token: res', res);
+          console.log('success auth token: res', res);
         })
         .catch(err => {
-          console.error('error posting token: ', err);
+          console.error('error auth token: ', err);
         });
     } else {
       const {
