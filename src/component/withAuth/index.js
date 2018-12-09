@@ -9,6 +9,7 @@ export default function withAuth(AuthComponent) {
     };
     componentWillMount() {
       if (!Auth.loggedIn()) {
+        console.log('AuthService: wilMount: not logged in');
         const {
           history: {
             replace = function() {
@@ -16,16 +17,18 @@ export default function withAuth(AuthComponent) {
             }
           } = {}
         } = this.props;
-        replace('/login');
+        replace('/');
       } else {
         try {
           const profile = Auth.getProfile();
           this.setState({
             user: profile
           });
+          console.log('AuthService: wilMount: logged in - profile', profile);
         } catch (err) {
+          console.log('AuthService: wilMount: logged in error- profile', err);
           Auth.logout();
-          this.props.history.replace('/login');
+          this.props.history.replace('/');
         }
       }
     }

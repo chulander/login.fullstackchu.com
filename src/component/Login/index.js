@@ -7,7 +7,7 @@ import AuthService from '../AuthService';
 export default class Login extends Component {
   constructor() {
     super();
-    this.Auth = new AuthService();
+    this.Auth = new AuthService('https://login.fullstackchu.com');
   }
   handleChange = e => {
     this.setState({
@@ -18,15 +18,17 @@ export default class Login extends Component {
     e.preventDefault();
     this.Auth.login(this.state.username, this.state.password)
       .then(res => {
-        this.props.history.replace('/');
+        console.log('form submit success: res', res);
+        this.props.history.replace('/success');
       })
       .catch(err => {
+        console.log('form submit error-what is error', err);
         alert(err);
       });
   };
   componentWillMount() {
     if (this.Auth.loggedIn()) {
-      this.props.history.replace('/');
+      this.props.history.replace('/success');
     }
   }
 

@@ -10,8 +10,8 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <Router>
     <Fragment>
-      <Route exact path="/" component={App} />
-      <Route exact path="/login" component={Login} />
+      <Route exact path="/" component={Login} />
+      <Route exact path="/success" component={App} />
     </Fragment>
   </Router>,
   document.getElementById('root')
