@@ -8,6 +8,10 @@ export default function withAuth(AuthComponent) {
       user: null
     };
     componentWillMount() {
+      console.log(
+        'what is document.referer',
+        document && document.referrer ? document.referrer : 'no referrer'
+      );
       if (!Auth.loggedIn()) {
         console.log('AuthService: wilMount: not logged in');
         const {
