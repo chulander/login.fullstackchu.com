@@ -79,7 +79,10 @@ export default class AuthService {
       ...options
     })
       .then(this._checkStatus)
-      .then(response => response.json());
+      .then(response => {
+        console.log('what is response here', response);
+        return response.json();
+      });
   }
 
   _checkStatus(response) {
