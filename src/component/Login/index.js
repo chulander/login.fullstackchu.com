@@ -23,7 +23,6 @@ export default class Login extends Component {
       })
       .catch(err => {
         console.log('form submit error-what is error', err);
-        alert(err);
       });
   };
   componentWillMount() {
