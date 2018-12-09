@@ -89,6 +89,7 @@ export default class AuthService {
       return response;
     } else {
       console.log('_checkStatus: what is error', response);
+      return response;
       // var error = new Error(response.statusText);
       // error.response = response;
       // throw error;
