@@ -19,41 +19,37 @@ class App extends Component {
     replace('/');
   };
 
-  componentWillMount() {
-    const token = Auth.getToken();
-    if (token) {
-      console.log('token exists during route "succes" mount');
-      // fetch('https://login.fullstackchu.com', {
-      //   method: 'post',
-      //   body: {
-      //     token
-      //   }
-      // })
-      fetch('https://login.fullstackchu.com', {
-        method: 'get',
-        headers: new Headers({
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        })
-      })
-        .then(res => {
-          console.log('success auth token: res', res);
-        })
-        .catch(err => {
-          console.error('error auth token: ', err);
-        });
-    } else {
-      const {
-        history: {
-          replace = function() {
-            void 0;
-          }
-        } = {}
-      } = this.props;
+  // componentWillMount() {
+  //   const token = Auth.getToken();
+  //   if (token) {
+  //     console.log('token exists during route "succes" mount');
+  //     // fetch('https://login.fullstackchu.com', {
+  //     //   method: 'post',
+  //     //   body: {
+  //     //     token
+  //     //   }
+  //     // })
+  //     fetch('https://login.fullstackchu.com', {
+  //       method: 'post'
+  //     })
+  //       .then(res => {
+  //         console.log('success auth token: res', res);
+  //       })
+  //       .catch(err => {
+  //         console.error('error auth token: ', err);
+  //       });
+  //   } else {
+  //     const {
+  //       history: {
+  //         replace = function() {
+  //           void 0;
+  //         }
+  //       } = {}
+  //     } = this.props;
 
-      replace('/');
-    }
-  }
+  //     replace('/');
+  //   }
+  // }
 
   render() {
     return (

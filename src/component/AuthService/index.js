@@ -88,10 +88,11 @@ export default class AuthService {
 
   _checkStatus(response) {
     if (response.body) {
-      console.log('what is response.body', response.body.json());
+      console.log('what is response.body', response.body);
     }
     // raises an error in case response status is not a success
     if (response.status >= 200 && response.status < 300) {
+      console.log('success response')
       // Success status lies between 200 to 300
       return response;
     } else {
