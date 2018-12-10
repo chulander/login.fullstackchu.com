@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
+import withAuth from '../withAuth';
+
 import './index.css';
 import loginLogo from '../../resource/batman.png';
 
 import AuthService from '../AuthService';
 
-export default class Login extends Component {
+export class Login extends Component {
   constructor() {
     super();
     this.Auth = new AuthService('https://login.fullstackchu.com');
@@ -35,22 +37,6 @@ export default class Login extends Component {
         console.log('form submit error-what is error', err);
       });
   };
-  componentWillMount() {
-    console.log(
-      'what is document.referer',
-      document && document.referrer ? document.referrer : 'no referrer'
-    );
-    if (this.Auth.loggedIn()) {
-      this.Auth.fetch(this.Auth.domain, { method: 'get' })
-        .then(res => {
-          console.log('what is get res', res);
-        })
-        .catch(err => {
-          console.log('get header err', err);
-        });
-      // this.props.history.replace('/success');
-    }
-  }
 
   render() {
     return (
@@ -82,3 +68,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default withAuth(Login);

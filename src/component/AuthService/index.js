@@ -48,7 +48,10 @@ export default class AuthService {
 
   getToken() {
     // Retrieves the user token from localStorage
-    return localStorage.getItem('id_token');
+
+    const token = localStorage.getItem('id_token');
+    console.log('getToken: what is token', token);
+    return token;
   }
 
   logout() {
@@ -71,6 +74,7 @@ export default class AuthService {
       ...(this.loggedIn() ? { Authorization: `Bearer ${this.getToken()}` } : {})
     });
 
+    console.log('fetch method: what is headers', headers);
     return fetch(url, {
       headers,
       ...options

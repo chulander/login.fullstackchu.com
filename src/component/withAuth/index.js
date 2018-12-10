@@ -8,17 +8,29 @@ export default function withAuth(AuthComponent) {
       user: null
     };
     componentWillMount() {
-      console.log(
-        'what is document.referer',
-        document && document.referrer ? document.referrer : 'no referrer'
-      );
-      if (Auth.loggedIn()) {
+      const referrer =
+        document && document.referrer
+          ? document.referrer.replace(/\/$/, '')
+          : undefined;
+      console.log('what is document.referer', referrer);
+      const token = Auth.getToken();
+      if (referrer && token) {
+        window.location.replace(`${referrer}?id_token=${token}`);
+      } else if (Auth.loggedIn()) {
         try {
           const profile = Auth.getProfile();
           this.setState({
             user: profile
           });
           console.log('AuthService: wilMount: logged in - profile', profile);
+          const {
+            history: {
+              replace = function() {
+                void 0;
+              }
+            } = {}
+          } = this.props;
+          replace('/success');
         } catch (err) {
           console.log('AuthService: wilMount: logged in error- profile', err);
           Auth.logout();
