@@ -77,7 +77,10 @@ export default class AuthService {
     return fetch(url, {
       headers,
       ...options
-    }).then(this._checkStatus);
+    })
+      .then(this._checkStatus)
+      .then(response => response.json());
+
     // .then(response => {
     //   if (response.body) {
     //     console.log('what is response.body', response.body.json());
@@ -87,12 +90,12 @@ export default class AuthService {
   }
 
   _checkStatus(response) {
-    if (response.body) {
-      console.log('what is response.body', response.body);
+    if (response) {
+      console.log('what is Parsed response', response);
     }
     // raises an error in case response status is not a success
     if (response.status >= 200 && response.status < 300) {
-      console.log('success response')
+      console.log('success response');
       // Success status lies between 200 to 300
       return response;
     } else {
