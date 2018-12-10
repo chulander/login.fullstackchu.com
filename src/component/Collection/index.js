@@ -16,6 +16,7 @@ const redirectDomain = e => {
     `https://${domainName}.fullstackchu.com?id_token=${token}`
   );
 };
+
 const CardExampleGroups = () => (
   <Container>
     <Header as="h2" icon textAlign="center">
