@@ -36,6 +36,19 @@ export default function withAuth(AuthComponent) {
           Auth.logout();
           this.props.history.replace('/');
         }
+      } else if (!Auth.loggedIn()) {
+        const {
+          history: {
+            pathname = '',
+            replace = function() {
+              void 0;
+            }
+          } = {}
+        } = this.props;
+
+        if (pathname !== '/') {
+          replace('/');
+        }
       }
     }
     render() {

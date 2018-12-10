@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Form from './form';
+import Form from './Form';
 import withAuth from '../withAuth';
 
 import AuthService from '../AuthService';
