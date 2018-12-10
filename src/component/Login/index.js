@@ -19,7 +19,7 @@ export default class Login extends Component {
     this.Auth.login(this.state.username, this.state.password)
       .then(res => {
         console.log('form submit success: res', res);
-        this.props.history.replace('/success');
+        // this.props.history.replace('/success');
       })
       .catch(err => {
         console.log('form submit error-what is error', err);
@@ -27,7 +27,7 @@ export default class Login extends Component {
   };
   componentWillMount() {
     if (this.Auth.loggedIn()) {
-      this.props.history.replace('/success');
+      // this.props.history.replace('/success');
     }
   }
 
