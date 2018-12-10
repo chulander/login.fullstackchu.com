@@ -24,7 +24,7 @@ export default class Login extends Component {
             ? document.referrer.replace(/\/$/, '')
             : undefined;
         console.log('what is document.referer', referrer);
-        window.location.redirect(
+        window.location.replace(
           referrer ? `${referrer}?id_token=${res.token}` : res.redirectUrl
         );
         // this.props.history.replace('/success');
