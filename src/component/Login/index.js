@@ -19,7 +19,13 @@ export default class Login extends Component {
     this.Auth.login(this.state.username, this.state.password)
       .then(res => {
         console.log('form submit success: res', res);
-        window.location.href = res.redirectUrl;
+        const referrer =
+          document && document.referrer ? document.referrer : undefined;
+        console.log('what is document.referer', referrer);
+
+        window.location.href = referrer
+          ? `${referrer}?id_token=${res.token}`
+          : res.redirectUrl;
         // this.props.history.replace('/success');
       })
       .catch(err => {
@@ -27,6 +33,10 @@ export default class Login extends Component {
       });
   };
   componentWillMount() {
+    console.log(
+      'what is document.referer',
+      document && document.referrer ? document.referrer : 'no referrer'
+    );
     if (this.Auth.loggedIn()) {
       this.Auth.fetch(this.Auth.domain, { method: 'get' })
         .then(res => {
