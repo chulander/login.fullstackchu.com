@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Component from './Component';
+import LoginComponent from './Component';
 import withAuth from '../withAuth';
 
 import AuthService from '../AuthService';
@@ -38,7 +38,7 @@ export class Login extends Component {
 
   render() {
     return (
-      <Component
+      <LoginComponent
         handleChange={this.handleChange}
         handleSubmit={this.handleFormSubmit}
         message={this.props.message}
