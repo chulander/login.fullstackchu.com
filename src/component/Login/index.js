@@ -20,11 +20,12 @@ export default class Login extends Component {
       .then(res => {
         console.log('form submit success: res', res);
         const referrer =
-          document && document.referrer ? document.referrer : undefined;
+          document && document.referrer
+            ? document.referrer.replace(/\/$/, '')
+            : undefined;
         console.log('what is document.referer', referrer);
-
         window.location.href = referrer
-          ? `${referrer.replace(/\/$/, '')}?id_token=${res.token}`
+          ? `${referrer}?id_token=${res.token}`
           : res.redirectUrl;
         // this.props.history.replace('/success');
       })
