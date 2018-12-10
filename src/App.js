@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AuthService, withAuth } from './component';
-import logo from './resource/logo.svg';
+import logo from './resource/logo.png';
 // import './App.css';
 
 const Auth = new AuthService();
