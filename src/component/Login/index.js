@@ -19,6 +19,7 @@ export default class Login extends Component {
     this.Auth.login(this.state.username, this.state.password)
       .then(res => {
         console.log('form submit success: res', res);
+        window.location.href = res.redirectUrl;
         // this.props.history.replace('/success');
       })
       .catch(err => {
@@ -27,6 +28,13 @@ export default class Login extends Component {
   };
   componentWillMount() {
     if (this.Auth.loggedIn()) {
+      this.Auth.fetch(this.Auth.domain, { method: 'get' })
+        .then(res => {
+          console.log('what is get res', res);
+        })
+        .catch(err => {
+          console.log('get header err', err);
+        });
       // this.props.history.replace('/success');
     }
   }
