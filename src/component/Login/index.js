@@ -1,8 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import Form from './form';
 import withAuth from '../withAuth';
-
-import './index.css';
-import loginLogo from '../../resource/batman.png';
 
 import AuthService from '../AuthService';
 
@@ -40,32 +38,39 @@ export class Login extends Component {
 
   render() {
     return (
-      <Fragment>
-        <div className="center">
-          <img src={loginLogo} className="App-logo" alt="logo" />
-          <div className="card">
-            <h1>Login</h1>
-            <form onSubmit={this.handleFormSubmit}>
-              <input
-                className="form-item"
-                placeholder="Username goes here..."
-                name="username"
-                type="text"
-                onChange={this.handleChange}
-              />
-              <input
-                className="form-item"
-                placeholder="Password goes here..."
-                name="password"
-                type="password"
-                onChange={this.handleChange}
-              />
-              <input className="form-submit" value="SUBMIT" type="submit" />
-            </form>
-          </div>
-        </div>
-      </Fragment>
+      <Form
+        handleChange={this.handleChange}
+        handleSubmit={this.handleFormSubmit}
+        message={this.props.message}
+      />
     );
+    // return (
+    //   <Fragment>
+    //     <div className="center">
+    //       <img src={loginLogo} className="App-logo" alt="logo" />
+    //       <div className="card">
+    //         <h1>Login</h1>
+    //         <form onSubmit={this.handleFormSubmit}>
+    //           <input
+    //             className="form-item"
+    //             placeholder="Username goes here..."
+    //             name="username"
+    //             type="text"
+    //             onChange={this.handleChange}
+    //           />
+    //           <input
+    //             className="form-item"
+    //             placeholder="Password goes here..."
+    //             name="password"
+    //             type="password"
+    //             onChange={this.handleChange}
+    //           />
+    //           <input className="form-submit" value="SUBMIT" type="submit" />
+    //         </form>
+    //       </div>
+    //     </div>
+    //   </Fragment>
+    // );
   }
 }
 

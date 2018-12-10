@@ -38,38 +38,13 @@ export default function withAuth(AuthComponent) {
         }
       }
     }
-    // componentWillMount() {
-    //   console.log(
-    //     'what is document.referer',
-    //     document && document.referrer ? document.referrer : 'no referrer'
-    //   );
-    //   if (!Auth.loggedIn()) {
-    //     console.log('AuthService: wilMount: not logged in');
-    //     const {
-    //       history: {
-    //         replace = function() {
-    //           void 0;
-    //         }
-    //       } = {}
-    //     } = this.props;
-    //     replace('/');
-    //   } else {
-    //     try {
-    //       const profile = Auth.getProfile();
-    //       this.setState({
-    //         user: profile
-    //       });
-    //       console.log('AuthService: wilMount: logged in - profile', profile);
-    //     } catch (err) {
-    //       console.log('AuthService: wilMount: logged in error- profile', err);
-    //       Auth.logout();
-    //       this.props.history.replace('/');
-    //     }
-    //   }
-    // }
     render() {
       return (
-        <AuthComponent history={this.props.history} user={this.state.user} />
+        <AuthComponent
+          history={this.props.history}
+          user={this.state.user}
+          message="Please Login In"
+        />
       );
     }
   };
